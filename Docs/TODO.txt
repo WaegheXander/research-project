@@ -1,0 +1,82 @@
+1 Wat is Network topology mapping
+2 Wat definieert een large-scale communication network?
+3 Wat is Fault tolerance & Resilience in een netwerk?
+
+
+4. link naat topologie belangerijk voor context voor alerting & monitoring
+5. netwerk topologieen zeer belangerijk de root van alles (nummer 1 kirteria = dat ze correct zijn)
+bv. zijn er tools die dat kunnen doen (monitoren/mappen) welke?
+
+beheren van netwerk
+- asset management
+- kennen & beheren van credentails
+- ...
+
+
+
+
+wat is fail early apploch vs fault tolorant
+single source of thruth
+(is er open source sofware even goed als payd)
+uptime vs beschikbaarheid
+99,999 hoe en wat 
+
+
+
+onderzoek doen naar verschillende network topologies mapping tools
+(open source payed)
+
+intervieuw met enquite + onderzoek hoe enquite
+
+==============================
+
+
+Network Topology Mapping:
+Network Topology Mapping refers to the process of visually representing the arrangement and interconnection of network elements such as nodes, links, and devices. It provides a comprehensive view of how these components are structured and connected within a network.
+
+Large-Scale Communication Network:
+A large-scale communication network is defined by its extensive reach and capacity to handle a significant volume of data or communication traffic. These networks often span across geographical areas and may include various interconnected subnetworks, serving a large number of users or devices.
+
+Fault Tolerance & Resilience in a Network:
+Fault tolerance in a network involves designing the system to continue operating seamlessly even when certain components fail. Resilience refers to the network's ability to recover quickly from disruptions or failures, minimizing downtime and ensuring uninterrupted service.
+
+Importance of Network Topology in Alerting & Monitoring:
+Understanding the network topology is crucial for effective alerting and monitoring. Identifying the relationships between devices helps in detecting and responding to issues promptly. A link to the topology provides context for interpreting alerts and aids in troubleshooting.
+
+Network Topologies and Their Significance:
+Network topologies serve as the foundation for all network operations. Ensuring correct topologies is essential, and there are tools available for monitoring and mapping. Validating network correctness is the primary criterion, and tools can assist in achieving this goal.
+
+Tools for Network Monitoring/Mapping:
+
+Open-source: Nagios, Cacti, OpenNMS
+Paid: SolarWinds, PRTG Network Monitor, Cisco Network Assurance Engine
+Network Management:
+
+Asset Management: Tracking and managing network assets, including devices and equipment.
+Credential Management: Securely handling and maintaining access credentials for network devices.
+Fail Early Approach vs Fault Tolerant:
+
+Fail Early: Identifying and addressing issues as early as possible in the development or operational stages.
+Fault Tolerant: Designing systems to withstand and continue functioning despite component failures.
+Single Source of Truth:
+Establishing a single, authoritative source for information to avoid discrepancies and ensure consistency in data across the network.
+
+Uptime vs Availability (99.999%):
+
+Uptime: The duration a system is operational without disruptions.
+Availability (99.999%): Reflects a high level of reliability, allowing only around 5 minutes of downtime per year.
+Research on Network Topology Mapping Tools:
+Conduct a comprehensive investigation into various network topology mapping tools, considering both open-source and paid options. Evaluate features, ease of use, and compatibility with specific network architectures.
+
+Interviews and Surveys:
+Gather insights through interviews and surveys to understand the perspectives of network administrators and professionals. Explore their preferences, challenges, and experiences with network topology mapping tools.
+
+Describing Research Exploration:
+Embark on a captivating journey to explore the intricacies of network topology mapping. Delve into the realm of open-source and paid tools, unlocking the secrets to effective network management. Capture the essence of resilience, fault tolerance, and the pursuit of a single source of truth in the ever-evolving landscape of large-scale communication networks.
+
+
+==============================
+Demonstrate a comprehensive understanding of network topology mapping, emphasizing its practical application in enhancing fault tolerance, resilience, and overall network management through effective use of mapping tools and best practices.
+==============================
+
+Effectively showcase your understanding of network topology mapping by presenting real-world examples, practical applications, and insights gained from interviews or surveys, emphasizing the impact on fault tolerance, resilience, and overall network management. Utilize visual aids and concise explanations to demonstrate the successful integration of mapping tools and best practices in optimizing network performance and reliability.

@@ -5,6 +5,6 @@ hermestelecom [EMAIL]
 cegeka [FORM]
 citymesh [EMAIL]
 tv vlaanderen [FORM]
-combell [EMAIL]
+--combell [EMAIL]--
 contabo [EMAIL]
 wirelessbelgie [FORM]

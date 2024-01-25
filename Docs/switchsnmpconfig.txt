@@ -1,0 +1,19 @@
+ena
+conf t
+no ip domain-lookup
+no service config
+hostname tesswitch
+vlan 1
+name access
+int vlan 1
+ip address dhcp
+desc access
+int range gi1/0/1-48
+switchport mode access
+switchport access vlan 1
+spanning-tree portfast
+exit
+snmp-server community zabbix RW
+snmp-server host 172.30.252.37 zabbix
+snmp-server enable traps
+

@@ -1,0 +1,11 @@
+https://qosnetworking.com/what-are-the-different-types-of-network-topology-maps-and-what-do-they-include/
+https://www.youtube.com/@NetworkChuck
+https://www.spiceworks.com/tech/networking/articles/what-is-network-topology/
+https://www.n-able.com/what-is-network-discovery
+https://www.fortinet.com/resources/cyberglossary/fault-tolerance#:~:text=Fault%20Tolerance%20Defined,operating%20despite%20failures%20or%20malfunctions.
+https://docs.oracle.com/cd/E19859-01/820-7346-10/guide.html
+https://www.kentik.com/blog/reinforcing-networks-advancing-resiliency-and-redundancy-techniques/
+https://www.kentik.com/kentipedia/what-is-network-optimization/
+
+
+

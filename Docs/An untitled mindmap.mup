@@ -1,0 +1,226 @@
+{
+  "formatVersion": 3,
+  "id": "root",
+  "ideas": {
+    "1": {
+      "title": "How does network topology mapping affect the resilience and fault tolerance of large-scale communi-cation networks?",
+      "id": 1,
+      "attr": {
+        "position": [
+          -84,
+          -272,
+          1
+        ],
+        "style": {
+          "width": 139
+        }
+      },
+      "ideas": {
+        "1": {
+          "title": "Netwerktopologie",
+          "id": 2,
+          "attr": {
+            "position": [
+              213.30004405975342,
+              -305.63747215270996,
+              11
+            ]
+          },
+          "ideas": {
+            "1": {
+              "title": "Point to point",
+              "id": 12
+            },
+            "2": {
+              "title": "Bus",
+              "id": 14
+            },
+            "3": {
+              "title": "Ring",
+              "id": 15
+            },
+            "4": {
+              "title": "Star",
+              "id": 16
+            },
+            "5": {
+              "title": "Tree",
+              "id": 17,
+              "ideas": {}
+            },
+            "6": {
+              "title": "Mesh",
+              "id": 19
+            },
+            "7": {
+              "title": "Hybrid ",
+              "id": 20
+            }
+          }
+        },
+        "2": {
+          "title": "Fault Tolerance",
+          "id": 4,
+          "attr": {
+            "position": [
+              221.68749523162842,
+              -11.737382888793945,
+              12
+            ]
+          },
+          "ideas": {
+            "2": {
+              "title": "Replication",
+              "id": 30
+            },
+            "3": {
+              "title": "MSTP  ",
+              "id": 31
+            },
+            "4": {
+              "title": "VRRP",
+              "id": 33
+            },
+            "5": {
+              "title": "VRRP ",
+              "id": 34
+            },
+            "2.5": {
+              "title": "Redundancy",
+              "id": 29,
+              "attr": {
+                "position": [
+                  112.59994506835938,
+                  -46.49995994567871,
+                  3
+                ]
+              }
+            }
+          }
+        },
+        "25": {
+          "title": "Resilience",
+          "id": 3,
+          "attr": {
+            "position": [
+              240.17504405975342,
+              176.12508964538574,
+              13
+            ]
+          },
+          "ideas": {
+            "1": {
+              "title": "IGP ",
+              "id": 35
+            },
+            "2": {
+              "title": "BGP",
+              "id": 36
+            },
+            "3": {
+              "title": "SR",
+              "id": 37
+            }
+          }
+        },
+        "-2": {
+          "title": "Beveiligingsoverwegingen:",
+          "id": 6,
+          "ideas": {
+            "1": {
+              "title": "VLAN ",
+              "id": 38
+            },
+            "2": {
+              "title": "Security Zone",
+              "id": 39
+            },
+            "3": {
+              "title": "Access Control",
+              "id": 40
+            },
+            "4": {
+              "title": "Physical Security",
+              "id": 41
+            }
+          }
+        },
+        "-3": {
+          "title": "Technieken voor topologie in kaart brengen",
+          "id": 8,
+          "attr": {
+            "position": [
+              169,
+              176.0000457763672,
+              4
+            ]
+          },
+          "ideas": {
+            "1": {
+              "title": "ICMP",
+              "id": 21
+            },
+            "2": {
+              "title": "LLDP",
+              "id": 22
+            },
+            "3": {
+              "title": "SNMP",
+              "id": 23
+            },
+            "4": {
+              "title": "MIBs",
+              "id": 24
+            }
+          }
+        },
+        "-0.25": {
+          "title": "10-Strike",
+          "id": 27
+        },
+        "-0.375": {
+          "title": "Cisco",
+          "id": 25,
+          "ideas": {}
+        },
+        "-1.625": {
+          "title": "Optimalisatiestrategieën",
+          "id": 7,
+          "ideas": {
+            "1": {
+              "title": "Requirements",
+              "id": 43
+            },
+            "2": {
+              "title": "Analysis",
+              "id": 44
+            },
+            "3": {
+              "title": "Infrastructure",
+              "id": 45
+            },
+            "4": {
+              "title": "Protocols ",
+              "id": 46
+            },
+            "5": {
+              "title": "Capacity Planning",
+              "id": 47
+            },
+            "6": {
+              "title": "Latency",
+              "id": 50
+            }
+          }
+        },
+        "-0.125": {
+          "title": "HelpSystems",
+          "id": 28,
+          "attr": {}
+        }
+      }
+    }
+  },
+  "title": "How does network topology mapping affect the resilience and fault tolerance of large-scale communi-cation networks?",
+  "links": []
+}

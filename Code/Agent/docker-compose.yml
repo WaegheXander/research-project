@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-6.4-latest
+    container_name: myraspberrypi
+    hostname: myraspberrypi
+    environment:
+      - ZBX_HOSTNAME=myraspberrypi
+      - ZBX_SERVER_HOST=zabbix-server
+    ports:
+      - "10050:10050"
+    restart: always
+    extra_hosts:
+      - "zabbix-server:<zabbix-server-ip>" # change this to your zabbix server ip
+    networks:
+      - zabbix-net
+
+networks:
+  zabbix-net:
+    name: zabbix-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.20.240.0/20

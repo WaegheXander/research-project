@@ -1,0 +1,108 @@
+version: "3"
+
+services:
+  mysql-server:
+    image: mysql:8.0
+    container_name: mysql-server
+    env_file:
+      - .env
+    environment:
+      - CHARACTER_SET_SERVER=utf8
+      - COLLATION_SERVER=utf8_bin
+      - DEFAULT_AUTHENTICATION_PLUGIN=mysql_native_password
+      - HOST_CACHE_SIZE=0
+    networks:
+      - zabbix-net
+    restart: always
+    volumes:
+      - mysql_vol:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    expose:
+      - 3306
+
+  zabbix-java-gateway:
+    image: zabbix/zabbix-java-gateway:alpine-6.4-latest
+    container_name: zabbix-java-gateway
+    networks:
+      - zabbix-net
+    restart: always
+    depends_on:
+      mysql-server:
+        condition: service_healthy
+    ports:
+      - "10052:10052"
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-6.4-latest
+    container_name: zabbix-agent
+    hostname: zabbix-agent
+    networks:
+      - zabbix-net
+    environment:
+      - ZBX_HOSTNAME=zabbix-agent
+    restart: always
+    expose:
+      - 10050
+    depends_on:
+      - zabbix-server
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:alpine-6.4-latest
+    container_name: zabbix-server
+    hostname: zabbix-server
+    env_file:
+      - .env
+    environment:
+      - ZBX_SERVER_HOST=zabbix-agent
+      - ZBX_HOSTNAME=zabbix-server
+      - DB_SERVER_HOST=mysql-server
+      - ZBX_JAVAGATEWAY=zabbix-java-gateway
+      - ZBX_ENABLE_SNMP_TRAPS=true
+      - ZBX_HISTORYCACHESIZE=32M
+    networks:
+      - zabbix-net
+    ports:
+      - "10051:10051"
+      - "162:162/udp"
+    expose:
+      - 10051
+    restart: always
+    depends_on:
+      - mysql-server
+      - zabbix-java-gateway
+
+  zabbix-web-nginx-mysql:
+    image: zabbix/zabbix-web-nginx-mysql:alpine-6.4-latest
+    container_name: zabbix-web-nginx-mysql
+    env_file:
+      - .env
+    environment:
+      - PHP_TZ=Europe/Brussels
+      - ZBX_SERVER_HOST=zabbix-server
+      - DB_SERVER_HOST=mysql-server
+    networks:
+      - zabbix-net
+    ports:
+      - "80:8080"
+    restart: always
+    depends_on:
+      - mysql-server
+      - zabbix-server
+
+networks:
+  zabbix-net:
+    name: zabbix-net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          ip_range: 172.20.240.0/20
+
+volumes:
+  mysql_vol:
+    name: mysql_vol

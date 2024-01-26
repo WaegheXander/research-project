@@ -19,7 +19,7 @@ if [ ! -x "$(command -v git)" ]; then
 fi
 
 # Clone the GitHub repository
-git clone git@github.com:WaegheXander/research-project.git
+git clone https://github.com/WaegheXander/research-project.git
 
 # Navigate to the Agent directory
 cd ./research-project/Code/Agent || exit

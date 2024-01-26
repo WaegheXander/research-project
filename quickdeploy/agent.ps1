@@ -18,7 +18,7 @@ if (-not (Test-Path "C:\Program Files\Git\bin\git.exe")) {
 }
 
 # Clone the GitHub repository
-git clone git@github.com:WaegheXander/research-project.git
+git clone https://github.com/WaegheXander/research-project.git
 
 # Navigate to the Agent directory
 cd .\research-project\Code\Agent

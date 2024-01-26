@@ -14,6 +14,7 @@ Welcome to the research project on network topology, resilience, and fault toler
 - [Agent Deploy](#agent-deploy)
   - [Quickdeploy](#quickdeploy)
   - [Manual](#manual)
+- [Troubleshoot](#troubleshoot)
 
 ## Getting started
 
@@ -59,11 +60,13 @@ Ensure the following prerequisites are installed on your machine:
 - [Docker-compose](https://docs.docker.com/engine/install/)
 - [Git](https://git-scm.com/downloads)
 - Internet 🙂
+- 1 Braincel 🧠
 
 ### Server Deploy
 
-__*note:*__
+**_note:_**
 
+> [!IMPORTANT]
 > An agent is already present on the server, so you don't need to create an additional agent on the same machine.
 
 To deploy the server u need to change your directory to `Code/Server/`
@@ -74,7 +77,7 @@ cd Code/Server/
 
 Before your start the server u need to change the `.env` variable. Currently the file is named `.env_example`
 
-1 __Change the file__ `.env_example` __to__ `.env`
+1 **Change the file** `.env_example` **to** `.env`
 
 ```bash
 # Windows
@@ -84,7 +87,7 @@ move .env_example .env
 mv .env_example .env
 ```
 
-2 __Replace the__ `.env` __variable to what u want them to be__
+2 **Replace the** `.env` **variable to what u want them to be**
 
 ```bash
 MYSQL_DATABASE=# DB_NAME
@@ -103,13 +106,13 @@ docker-compose up -d
 
 To stop the server without losing any data, run this command:
 
-``` bash
+```bash
 docker-compose down
 ```
 
 To stop the server an remove all stored data, run this command
 
-``` bash
+```bash
 docker-compose down -v
 ```
 
@@ -130,7 +133,7 @@ To see if everything works go to any webbrowser and type the url: [http://localh
 
 ### [Optional]
 
-1 __Using an other port for the web interface__
+1 **Using an other port for the web interface**
 
 if u're server port 80 is already in use u can simply modify the port in the `docker-compose.yml` file under the server `zabbix-web-nginx-mysql`
 
@@ -141,7 +144,8 @@ if u're server port 80 is already in use u can simply modify the port in the `do
 networks:
   - zabbix-net
 ports:
-  - "80:8080" # change port 80 to whatever port is available
+  - "80:8080"
+  # change port 80 to whatever port is available
 restart: always
 depends_on:
   - mysql-server
@@ -151,7 +155,7 @@ depends_on:
 Don't forget when u now want to see the web interface u need to give the port in the url
 `http://localhost:<port>/`
 
-2 __Using an other port for snmp traps__
+2 **Using an other port for snmp traps**
 
 I u would like to use an other port for the snmp traps change the port at the service `zabbix-server`
 
@@ -161,7 +165,8 @@ networks:
       - zabbix-net
     ports:
       - "10051:10051"
-      - "162:162/udp" # change the first port 162 to whatever u like 
+      - "162:162/udp"
+      # change the first port 162 to whatever u like
     expose:
       - 10051
     restart: always
@@ -183,7 +188,7 @@ docker-compose up
 To default credentials are
 
 > Username: Admin\
-Password: zabbix
+> Password: zabbix
 
 ## Agent Deploy
 
@@ -222,7 +227,7 @@ cd Code/Agent/
 
 Before your start the aggent u need to change the `.env` variable. Currently the file is named `.env_example`
 
-1 __Change the file to__ `.env`
+1 **Change the file to** `.env`
 
 ```bash
 # Windows
@@ -232,7 +237,7 @@ move .env_example .env
 mv .env_example .env
 ```
 
-2 __Replace the__ `.env` __variable to what u want them to be__
+2 **Replace the** `.env` **variable to what u want them to be**
 
 ```bash
 SERVER_IP= # The ip of your zabbix server
@@ -248,13 +253,13 @@ docker-compose up -d
 
 To stop the server without losing any data just run this command:
 
-``` bash
+```bash
 docker-compose down
 ```
 
 To stop the server an remove all stored data, run this command
 
-``` bash
+```bash
 docker-compose down -v
 ```
 
@@ -266,3 +271,96 @@ It should be something like this
 CONTAINER ID   IMAGE                                   COMMAND                  CREATED       STATUS          PORTS                                           NAMES
 24bf9a562c15   zabbix/zabbix-agent:alpine-6.4-latest   "/sbin/tini -- /usr/…"   7 hours ago   Up 45 minutes   0.0.0.0:10050->10050/tcp, :::10050->10050/tcp   myraspberrypi
 ```
+
+## Troubleshoot
+
+### Firewall setting
+
+Check the firewall settings on the server machine to ensure that the required ports for Zabbix are open. 10051 & 162 & 80(or the port u configured)
+
+**Windows**
+
+```ps1
+Test-NetConnection -ComputerName localhost -Port 80
+Test-NetConnection -ComputerName localhost -Port 10051
+```
+
+Output:
+
+```plaintext
+ComputerName     : localhost
+RemoteAddress    : ::1
+RemotePort       : 10051
+InterfaceAlias   : Loopback Pseudo-Interface 1
+SourceAddress    : ::1
+TcpTestSucceeded : True
+```
+
+If the `TcpTestSucceeded : Flase` that means the port is no open from the outside go to firewall setting an add a new inbound for the port(s) that are not open yet
+
+**Linux**
+
+UFW systems
+
+```bash
+sudo ufw status
+```
+
+Output
+
+```plaintext
+To                         Action      From
+--                         ------      ----
+22                         ALLOW       Anywhere
+10051                      ALLOW       Anywhere
+80                         ALLOW       Anywhere
+162                        ALLOW       Anywhere
+22 (v6)                    ALLOW       Anywhere (v6)
+10051 (v6)                 ALLOW       Anywhere (v6)
+80 (v6)                    ALLOW       Anywhere (v6)
+162 (v6)                   ALLOW       Anywhere (v6)
+```
+
+If u don't see a port open u can use this command to add the port
+
+```bash
+sudo ufw allow <port>
+```
+
+### Host file
+
+> [!NOTE]
+> this is for agents only
+
+Check if u can pint the server
+
+```bash
+ping <zabbix-server>
+```
+
+If u can't ping to the server u might want to add the host to the hosts file
+
+> [!NOTE]
+> U need to be administrator to do this
+
+**Windows**
+
+`C:\Windows\System32\drivers\etc`
+here u can add the host like:
+
+```plaintext
+<server ip>   zabbix-server
+```
+
+**Linux**
+
+`/etc/hosts`
+here u can add the host like:
+
+```plaintext
+<server ip>   zabbix-server
+```
+
+### Port availability
+
+If u get an error that the port is already in use, u can reconfigure the port u want to use see: [Optional](#optional)

@@ -12,15 +12,26 @@ if ! systemctl is-active --quiet docker; then
     exit 1
 fi
 
-# Get docker-compose.yml
-curl -o docker-compose.yml https://github.com/WaegheXander/research-project/raw/main/Code/Agent/docker-compose.yml
+# Check if Git is installed
+if [ ! -x "$(command -v git)" ]; then
+    echo "Git is not installed. Please install Git and run the script again."
+    exit 1
+fi
 
-# Ask for server IP
+# Clone the GitHub repository
+git clone git@github.com:WaegheXander/research-project.git
+
+# Navigate to the Agent directory
+cd ./research-project/Code/Agent || exit
+
+# Ask for server IP and NAME
 read -p "Enter SERVER_IP: " SERVER_IP
+read -p "Enter NAME [no spaces]: " NAME
 
-# Put the variable in a .env file
+# Create .env file with SERVER_IP and NAME
 cat <<EOF > .env
 SERVER_IP=$SERVER_IP
+NAME=$NAME
 EOF
 
 # Start docker-compose

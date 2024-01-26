@@ -3,10 +3,12 @@ version: "3.4"
 services:
   zabbix-agent:
     image: zabbix/zabbix-agent:alpine-6.4-latest
-    container_name: myraspberrypi
-    hostname: myraspberrypi
+    container_name: ${NAME}
+    hostname: ${NAME}
+    env_file:
+      - .env
     environment:
-      - ZBX_HOSTNAME=myraspberrypi
+      - ZBX_HOSTNAME=${NAME}
       - ZBX_SERVER_HOST=zabbix-server
     ports:
       - "10050:10050"
